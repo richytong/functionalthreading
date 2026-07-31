@@ -1,3 +1,5 @@
-__version__ = '0.1.0'
+from package import version
 
-__all__ = ['__version__']
+__version__ = version
+
+print(__version__)

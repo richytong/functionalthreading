@@ -1,9 +1,9 @@
 from setuptools import setup
-# from __init__ import __version__
+from package import version
 
 setup(
     name='functionalthreading',
-    version='0.1.0',
+    version=version,
     description='Functional programming with thread-based parallelism.',
-    # packages=['__init__'],
+    packages=['package'],
 )
