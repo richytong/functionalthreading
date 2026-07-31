@@ -1,5 +1,7 @@
+from functools import partial, Placeholder as _
 from package import version
+from functions import chain, tap
 
 __version__ = version
 
-print(__version__)
+__all__ = ['partial', '_' ,'chain', 'tap']
