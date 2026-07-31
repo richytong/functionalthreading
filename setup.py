@@ -3,10 +3,11 @@ from tomllib import load
 
 with open('pyproject.toml', 'rb') as file:
     pyproject = load(file)
+    print(pyproject)
 
     setup(
         name='functionalthreading',
         version=pyproject['project']['version'],
         description='Functional programming with thread-based parallelism',
-        packages=['package', 'functions'],
+        packages=['functions'],
     )

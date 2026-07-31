@@ -1,6 +1,6 @@
 [project]
 name = "functionalthreading"
-version = "0.2.2"
+version = "0.2.3"
 authors = [
   { name="Richard Tong", email="richytong@gmail.com" },
 ]
@@ -11,8 +11,8 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-license = "CFOSS"
-license-files = ["LICENSE"]
+# license = "CFOSS"
+# license-files = ["LICENSE"]
 
 [project.urls]
 Homepage = "https://github.com/richytong/functionalthreading"
