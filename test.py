@@ -64,6 +64,12 @@ def test_tmap():
     assert ret[1] == 4, f'ret[1] ({ret[1]}) != 4'
     assert ret[2] == 9, f'ret[2] ({ret[2]}) != 9'
 
+    mapping_func = tmap(lambda n: n ** 2)
+    ret = mapping_func([1, 2, 3])
+    assert ret[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert ret[1] == 4, f'ret[1] ({ret[1]}) != 4'
+    assert ret[2] == 9, f'ret[2] ({ret[2]}) != 9'
+
     def f(n):
         time.sleep(1)
         return n + 1

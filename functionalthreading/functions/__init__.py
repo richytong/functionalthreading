@@ -1,5 +1,5 @@
+from functools import partial, Placeholder as _
 from threading import Thread
-import itertools
 
 def _chain(argument, funcs):
     ret = argument
@@ -37,10 +37,7 @@ def chain(argument, *funcs):
 
     """
     if callable(argument):
-        inner_funcs = (argument,) + funcs
-        def inner_func(inner_argument):
-            return _chain(inner_argument, inner_funcs)
-        return inner_func
+        return partial(_chain, _, (argument,) + funcs)
     return _chain(argument, funcs)
 
 def tap(func):
@@ -74,16 +71,7 @@ class _Thread(Thread):
     def run(self):
         self.value = self.target(*self.args)
 
-def tmap(array_or_tuple, func):
-    """Map a function concurrently across each element of an array or tuple.
-
-    Each function invokation happens in a separate thread.
-
-    ```python
-    squared = tmap([1, 2, 3], lambda n: n ** 2)
-    ```
-
-    """
+def _tmap(array_or_tuple, func):
     length = len(array_or_tuple)
     threads = []
     index = 0
@@ -103,6 +91,27 @@ def tmap(array_or_tuple, func):
     if isinstance(array_or_tuple, tuple):
         return tuple(result)
     return result
+
+def tmap(*args):
+    """Map a function concurrently across each element of an array or tuple.
+
+    Each function invokation happens in a separate thread.
+
+    ```python
+    squared = tmap([1, 2, 3], lambda n: n ** 2)
+    ```
+
+    If the array or tuple argument is omitted, returns a function of the mapping function that expects the non-function argument.
+
+    ```python
+    my_mapping_func = tmap(lambda n: n ** 2)
+    squared = my_mapping_func([1, 2, 3])
+    ```
+
+    """
+    if callable(args[0]):
+        return partial(_tmap, _, args[0])
+    return _tmap(*args)
 
 __name__ = 'functions'
 
