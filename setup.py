@@ -8,5 +8,5 @@ with open('pyproject.toml', 'rb') as file:
         name='functionalthreading',
         version=pyproject['project']['version'],
         description='Functional programming with thread-based parallelism',
-        packages=['functionalthreading'],
+        packages=['functionalthreading', 'functionalthreading.functions'],
     )
