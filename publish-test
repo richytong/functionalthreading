@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+
+VERSION=$(grep "version =" package/__init__.py | awk '{print $3}')
+VERSION=${VERSION:1:-1}
+
+rm dist/*
+python3 -m build
+
+python3 -m twine upload --repository testpypi --password $1 dist/*

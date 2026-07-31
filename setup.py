@@ -1,9 +1,12 @@
 from setuptools import setup
-from package import version
+from tomllib import load
 
-setup(
-    name='functionalthreading',
-    version=version,
-    description='Functional programming with thread-based parallelism.',
-    packages=['package', 'functions'],
-)
+with open('pyproject.toml', 'rb') as file:
+    pyproject = load(file)
+
+    setup(
+        name='functionalthreading',
+        version=pyproject['project']['version'],
+        description='Functional programming with thread-based parallelism',
+        packages=['package', 'functions'],
+    )
