@@ -1,5 +1,5 @@
 from functools import partial, Placeholder as _
-from threading import Thread
+from functionalthreading.classes import Thread
 
 def _chain(argument, funcs):
     ret = argument
@@ -61,23 +61,13 @@ def tap(func):
         return argument
     return inner_func
 
-class _Thread(Thread):
-    def __init__(self, *args, **kwargs):
-        Thread.__init__(self, *args, **kwargs)
-        self.value = None
-        self.target = kwargs['target']
-        self.args = kwargs['args']
-
-    def run(self):
-        self.value = self.target(*self.args)
-
 def _tmap(array_or_tuple, func):
     length = len(array_or_tuple)
     threads = []
     index = 0
     args = [array_or_tuple]
     while index < length:
-        t = _Thread(target=func, args=[array_or_tuple[index]])
+        t = Thread(target=func, args=[array_or_tuple[index]])
         t.start()
         threads.append(t)
         index += 1
