@@ -1,5 +1,5 @@
 import time
-from src.functionalthreading import partial, _, chain, tap, tmap
+from functionalthreading import partial, _, chain, tap, tmap
 
 def test_partial_and__():
     assert partial.__doc__, 'Should have docs.'
