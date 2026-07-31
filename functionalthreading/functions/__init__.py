@@ -104,4 +104,6 @@ def tmap(array_or_tuple, func):
         return tuple(result)
     return result
 
+__name__ = 'functions'
+
 __all__ = ['chain', 'tap', 'tmap']
