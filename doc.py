@@ -160,17 +160,20 @@ Placeholder cannot be passed to partial() as a keyword argument.
 {chain.__doc__}
 ### tap{signature(tap)}
 {tap.__doc__}
-### tmap(argument, func)
-### tmap(func)
+### tmap(argument, function)
+### tmap(function)
 {tmap.__doc__}
-### tforeach(argument, func)
-### tforeach(func)
+### tforeach(argument, function)
+### tforeach(function)
 {tforeach.__doc__}
-### tfilter(argument, func)
-### tfilter(func)
+### tfilter(argument, function)
+### tfilter(function)
 {tfilter.__doc__}
-### tflatmap(argument, func)
-### tflatmap(func)
+### reduce(argument, function, /[, initial])
+### reduce(function, /[, initial])
+{reduce.__doc__}
+### tflatmap(argument, function)
+### tflatmap(function)
 {tflatmap.__doc__}
 """
 
