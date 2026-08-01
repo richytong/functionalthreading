@@ -8,6 +8,7 @@ def always(argument):
     always5 = always(5)
 
     always5()
+    ```
 
     """
     def inner_func():
