@@ -192,6 +192,7 @@ Always return a value.
 always5 = always(5)
 
 always5()
+```
 
 
 ### thunkify(func, *args, **kwargs)
