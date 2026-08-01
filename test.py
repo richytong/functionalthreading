@@ -7,10 +7,12 @@ def test_Thread():
     def f(n):
         return n ** 2
 
-    t = Thread(target=f, args=[3])
+    t = Thread(name='test', daemon=True, target=f, args=[3])
     t.start()
     t.join()
     assert t.result == 9, f't.result ({t.result}) != 9'
+    assert t.name == 'test', f't.name ({t.name}) != \'test\''
+    assert t.daemon == True, f't.daemon ({t.daemon}) != True'
 
     def f(a, b, c):
         return a + b + c
