@@ -16,6 +16,9 @@ chain(
 ## Introduction
 The functionalthreading module provides functions for concurrent functional programming with thread-based parallelism. Functional programming is a programming paradigm where a program is thought to be a tree of functions. This module offers functions and classes that enable the functional programming paradigm and concurrent programming in Python.
 
+## Functional Programming
+See [Functional Programming HOWTO](https://docs.python.org/3/howto/functional.html).
+
 ## Reference
 
 ### Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None, context=None)
