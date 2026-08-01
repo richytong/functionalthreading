@@ -11,8 +11,8 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-# license = "CFOSS"
-# license-files = ["LICENSE"]
+license = "Unlicense"
+license-files = ["LICENSE"]
 
 [project.urls]
 Homepage = "https://github.com/richytong/functionalthreading"
