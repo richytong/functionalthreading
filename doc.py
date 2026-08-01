@@ -1,5 +1,5 @@
 from inspect import signature
-from functionalthreading import Thread, partial, _, chain, tap, tmap
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap
 
 readme_content = f"""# functionalthreading
 functionalthreading - Concurrent functional programming with thread-based parallelism
@@ -151,6 +151,10 @@ Placeholder cannot be passed to partial() as a keyword argument.
 
 > Added in version 3.14.
 
+### always{signature(always)}
+{always.__doc__}
+### thunkify{signature(thunkify)}
+{thunkify.__doc__}
 ### chain{signature(chain)}
 {chain.__doc__}
 ### tap{signature(tap)}

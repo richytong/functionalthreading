@@ -185,6 +185,29 @@ Used as a placeholder for partial arguments.
 
 > Added in version 3.14.
 
+### always(argument)
+Always return a value.
+
+```python
+always5 = always(5)
+
+always5()
+
+
+### thunkify(func, *args, **kwargs)
+Create a thunk from a function and arguments.
+
+A thunk is a function that takes no arguments and executes the provided function with the provided arguments each call.
+
+```python
+printHello = thunkify(print, 'Hello')
+
+printHello()
+printHello()
+printHello()
+```
+
+
 ### chain(argument, *funcs)
 Chain functions together.
 
