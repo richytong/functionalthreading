@@ -1,6 +1,6 @@
 [project]
 name = "functionalthreading"
-version = "0.6.0"
+version = "0.6.1"
 authors = [
   { name="Richard Tong", email="richytong@gmail.com" },
 ]
