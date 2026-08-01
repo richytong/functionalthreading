@@ -93,13 +93,13 @@ def tap(func):
         return argument
     return inner_func
 
-def _tmap(array_or_tuple, func):
-    length = len(array_or_tuple)
+def _tmap(argument, func):
+    length = len(argument)
     threads = []
     index = 0
-    args = [array_or_tuple]
+    args = [argument]
     while index < length:
-        t = Thread(target=func, args=[array_or_tuple[index]])
+        t = Thread(target=func, args=[argument[index]])
         t.start()
         threads.append(t)
         index += 1
@@ -107,7 +107,7 @@ def _tmap(array_or_tuple, func):
     for t in threads:
         t.join()
         result.append(t.result)
-    if isinstance(array_or_tuple, tuple):
+    if isinstance(argument, tuple):
         return tuple(result)
     return result
 
