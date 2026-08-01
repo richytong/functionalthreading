@@ -1,5 +1,5 @@
 from inspect import signature
-from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach
 
 readme_content = f"""# functionalthreading
 functionalthreading - Concurrent functional programming with thread-based parallelism
@@ -163,6 +163,9 @@ Placeholder cannot be passed to partial() as a keyword argument.
 ### tmap(argument, func)
 ### tmap(func)
 {tmap.__doc__}
+### tforeach(argument, func)
+### tforeach(func)
+{tforeach.__doc__}
 """
 
 with open('README.md', 'w') as readme:

@@ -1,5 +1,5 @@
 import time
-from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach
 
 def test_Thread():
     assert Thread.__doc__, 'Should have docs.'
@@ -142,6 +142,28 @@ def test_tmap():
     assert ret[2] == 4, f'ret[2] ({ret[2]}) != 4'
     assert end - start < 1.1, 'Took too much time.'
 
+def test_tforeach():
+    assert tforeach.__doc__, 'Should have docs.'
+
+    numbers = []
+    def f(n):
+        nonlocal numbers
+        numbers.append(n)
+
+    ret = tforeach([1, 2, 3], f)
+
+    assert ret == None, f'ret ({ret}) != None'
+    assert numbers[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert numbers[1] == 2, f'ret[1] ({ret[1]}) != 2'
+    assert numbers[2] == 3, f'ret[2] ({ret[2]}) != 3'
+
+    foreach_func = tforeach(f)
+    ret = foreach_func([1, 2, 3])
+
+    assert ret == None, f'ret ({ret}) != None'
+    assert numbers[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert numbers[1] == 2, f'ret[1] ({ret[1]}) != 2'
+    assert numbers[2] == 3, f'ret[2] ({ret[2]}) != 3'
 
 def test():
     test_Thread()
@@ -151,6 +173,7 @@ def test():
     test_chain()
     test_tap()
     test_tmap()
+    test_tforeach()
 
 if __name__ == '__main__':
     test()

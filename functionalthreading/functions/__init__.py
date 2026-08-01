@@ -132,6 +132,41 @@ def tmap(*args):
         return partial(_tmap, _, args[0])
     return _tmap(*args)
 
+def _tforeach(argument, func):
+    length = len(argument)
+    threads = []
+    index = 0
+    args = [argument]
+    while index < length:
+        t = Thread(target=func, args=[argument[index]])
+        t.start()
+        threads.append(t)
+        index += 1
+    for t in threads:
+        t.join()
+    return None
+
+def tforeach(*args):
+    """Execute a function concurrently for each element of an array or tuple.
+
+    Each function invokation happens in a separate thread.
+
+    ```python
+    tforeach([1, 2, 3], print)
+    ```
+
+    If the array or tuple argument is omitted, returns a function of the function to execute that expects the argument.
+
+    ```python
+    my_foreach_func = tforeach(print)
+    my_foreach_func([1, 2, 3])
+    ```
+
+    """
+    if callable(args[0]):
+        return partial(_tforeach, _, args[0])
+    return _tforeach(*args)
+
 __name__ = 'functions'
 
-__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap']
+__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap', 'tforeach']

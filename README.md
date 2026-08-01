@@ -265,11 +265,29 @@ Each function invokation happens in a separate thread.
 squared = tmap([1, 2, 3], lambda n: n ** 2)
 ```
 
-If the array or tuple argument is omitted, returns a function of the mapping function that expects the non-function argument.
+If the array or tuple argument is omitted, returns a function of the mapping function that expects the argument.
 
 ```python
 my_mapping_func = tmap(lambda n: n ** 2)
 squared = my_mapping_func([1, 2, 3])
+```
+
+
+### tforeach(argument, func)
+### tforeach(func)
+Execute a function concurrently for each element of an array or tuple.
+
+Each function invokation happens in a separate thread.
+
+```python
+tforeach([1, 2, 3], print)
+```
+
+If the array or tuple argument is omitted, returns a function of the function to execute that expects the argument.
+
+```python
+my_foreach_func = tforeach(print)
+my_foreach_func([1, 2, 3])
 ```
 
 
