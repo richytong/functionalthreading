@@ -15,5 +15,4 @@ license = "Unlicense"
 license-files = ["LICENSE"]
 
 [project.urls]
-Homepage = "https://pypi.org/project/functionalthreading/"
 Issues = "https://github.com/richytong/functionalthreading/issues"
