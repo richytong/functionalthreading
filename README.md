@@ -361,3 +361,6 @@ duplicates = my_flatmapping_func([1, 2, 3])
 ```
 
 
+
+## LICENSE
+functionalthreading is distributed under the [Unlicense](https://unlicense.org/).

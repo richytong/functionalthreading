@@ -175,6 +175,9 @@ Placeholder cannot be passed to partial() as a keyword argument.
 ### tflatmap(argument, function)
 ### tflatmap(function)
 {tflatmap.__doc__}
+
+## LICENSE
+functionalthreading is distributed under the [Unlicense](https://unlicense.org/).
 """
 
 with open('README.md', 'w') as readme:
