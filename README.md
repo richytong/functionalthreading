@@ -209,6 +209,7 @@ printHello()
 ```
 
 
+### chain(*funcs)
 ### chain(argument, *funcs)
 Chain functions together.
 
@@ -254,7 +255,8 @@ chain(
 ```
 
 
-### tmap(*args)
+### tmap(func)
+### tmap(argument, func)
 Map a function concurrently across each element of an array or tuple.
 
 Each function invokation happens in a separate thread.
