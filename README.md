@@ -257,9 +257,9 @@ chain(
 
 ### tmap(argument, function)
 ### tmap(function)
-Map a function concurrently across each element of an list or tuple.
+Map a function concurrently across each element of a list or tuple.
 
-A mapper is a function that specifies a single element of an list or tuple and returns a corresponding element of the resulting list or tuple. Each mapper invocation happens in a separate thread.
+A mapper is a function that specifies a single element of a list or tuple and returns a corresponding element of the resulting list or tuple. Each mapper invocation happens in a separate thread.
 
 ```python
 squared = tmap([1, 2, 3], lambda n: n ** 2)
@@ -275,7 +275,7 @@ squared = my_mapping_func([1, 2, 3])
 
 ### tforeach(argument, function)
 ### tforeach(function)
-Execute a callback concurrently for each element of an list or tuple.
+Execute a callback concurrently for each element of a list or tuple.
 
 A callback is a function that does not necessarily specify a value or return. Each callback invocation happens in a separate thread.
 
@@ -293,9 +293,9 @@ my_foreach_func([1, 2, 3])
 
 ### tfilter(argument, function)
 ### tfilter(function)
-Concurrently filter an list or tuple.
+Concurrently filter a list or tuple.
 
-A predicate is a function that specifies an element of an list or tuple and returns a boolean value. Elements corresponding to predicate invocations that return `False` are filtered out of the resulting list or tuple, while elements corresponding to predicate invocationsn that return `True` are retained. Each predicate invocation happens in a separate thread.
+A predicate is a function that specifies an element of a list or tuple and returns a boolean value. Elements corresponding to predicate invocations that return `False` are filtered out of the resulting list or tuple, while elements corresponding to predicate invocationsn that return `True` are retained. Each predicate invocation happens in a separate thread.
 
 ```python
 def is_odd(n):
@@ -317,9 +317,9 @@ odd_numbers = filter_odds([1, 2, 3, 4, 5])
 
 ### reduce(argument, function, /[, initial])
 ### reduce(function, /[, initial])
-Reduce an list or tuple to a single value (accumulator).
+Reduce a list or tuple to a single value (accumulator).
 
-A reducer is a function that specifies an accumulator and a given element of an list or tuple, and returns an accumulator. Each reducer invocation happens sequentially.
+A reducer is a function that specifies an accumulator and a given element of a list or tuple, and returns an accumulator. Each reducer invocation happens sequentially.
 
 ```python
 # add is a reducer
@@ -345,7 +345,7 @@ sum = reducing_func([1, 2, 3, 4, 5])
 
 ### tflatmap(argument, function)
 ### tflatmap(function)
-Apply a flatmapper concurrently to each element of an list or tuple, concatenating the results.
+Apply a flatmapper concurrently to each element of a list or tuple, concatenating the results.
 
 A flatmapper is a function that specifies an element of the list or tuple, and returns a list, tuple, or single element. A returned list or tuple is concatenated onto the resulting list or tuple, while a returned single element is appended. Each flatmapper invocation happens in a separate thread.
 
