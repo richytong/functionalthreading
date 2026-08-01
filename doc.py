@@ -1,5 +1,5 @@
 from inspect import signature
-from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter, reduce
 
 readme_content = f"""# functionalthreading
 functionalthreading - Concurrent functional programming with thread-based parallelism

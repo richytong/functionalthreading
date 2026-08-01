@@ -1,5 +1,5 @@
 import time
-from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter, reduce
 
 def test_Thread():
     assert Thread.__doc__, 'Should have docs.'
@@ -184,6 +184,26 @@ def test_tfilter():
     assert ret[1] == 3, f'ret[1] ({ret[1]}) != 3'
     assert ret[2] == 5, f'ret[2] ({ret[2]}) != 5'
 
+def test_reduce():
+    assert reduce.__doc__, 'Should have docs.'
+
+    def add(a, b):
+        return a + b
+
+    ret = reduce([1, 2, 3, 4, 5], add)
+    assert ret == 15, f'ret ({ret}) != 15'
+
+    ret = reduce([1, 2, 3, 4, 5], add, 10)
+    assert ret == 25, f'ret ({ret}) != 25'
+
+    reducing_func = reduce(add)
+    ret = reducing_func([1, 2, 3, 4, 5])
+    assert ret == 15, f'ret ({ret}) != 15'
+
+    reducing_func = reduce(add, 10)
+    ret = reducing_func([1, 2, 3, 4, 5])
+    assert ret == 25, f'ret ({ret}) != 25'
+
 def test():
     test_Thread()
     test_partial_and__()
@@ -194,6 +214,7 @@ def test():
     test_tmap()
     test_tforeach()
     test_tfilter()
+    test_reduce()
 
 if __name__ == '__main__':
     test()

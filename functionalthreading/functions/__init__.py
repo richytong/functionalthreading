@@ -1,4 +1,4 @@
-from functools import partial, Placeholder as _
+from functools import partial, Placeholder as _, reduce as _reduce
 from functionalthreading.classes import Thread
 
 def always(argument):
@@ -216,6 +216,41 @@ def tfilter(*args):
         return partial(_tfilter, _, args[0])
     return _tfilter(*args)
 
+def reduce(*args):
+    """Reduce an array or tuple to a single value (accumulator).
+
+    A reducer is a function that specifies the accumulator and a given element of the array or tuple. Each reducer invocation happens sequentially.
+
+    ```python
+    # add is a reducer
+    def add(a, b):
+        return a + b
+
+    sum = reduce([1, 2, 3, 4, 5], add)
+    ```
+
+    If an initial value is provided, it is treated as the starting value for the accumulator.
+
+    ```python
+    sum = reduce([1, 2, 3, 4, 5], add, 10)
+    ```
+
+    If the array or tuple argument is omitted, returns a function of the reducer and initial value that expects the argument.
+
+    ```python
+    reducing_func = reduce(add, 10)
+    sum = reducing_func([1, 2, 3, 4, 5])
+    ```
+
+    """
+    if callable(args[0]):
+        if len(args) == 2:
+            return partial(_reduce, args[0], _, args[1])
+        return partial(_reduce, args[0])
+    if len(args) == 3:
+        return _reduce(args[1], args[0], args[2])
+    return _reduce(args[1], args[0])
+
 __name__ = 'functions'
 
-__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap', 'tforeach', 'tfilter']
+__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap', 'tforeach', 'tfilter', 'reduce']
