@@ -19,6 +19,12 @@ The functionalthreading module provides functions for concurrent functional prog
 ## Functional Programming
 See [Functional Programming HOWTO](https://docs.python.org/3/howto/functional.html).
 
+## Locking
+This module intentionally does not include any locking mechanism, for example [Lock](https://docs.python.org/3/library/threading.html#threading.Lock). It is the responsibility of the programmer using this module to ensure that updates to shared state are atomic.
+
+## Atomicity
+Atomicity is the property of an update (transaction) that implies indivisible and irreducible. An atomic update to state is an indivisible and irreducible update to state. State could mean a log file, cache, database table, game engine physics state, operating system process tables, file system metadata, etc.
+
 ## Reference
 
 ### Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None, context=None)
@@ -55,7 +61,6 @@ t.start()
 t.join()
 print(t.result)
 ```
-
 
 #### start()
 Start the thread’s activity.
