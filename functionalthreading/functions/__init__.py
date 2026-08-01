@@ -71,13 +71,10 @@ def _tmap(array_or_tuple, func):
         t.start()
         threads.append(t)
         index += 1
-    index = 0
     result = []
-    while index < length:
-        t = threads[index]
+    for t in threads:
         t.join()
-        result.append(t.value)
-        index += 1
+        result.append(t.result)
     if isinstance(array_or_tuple, tuple):
         return tuple(result)
     return result

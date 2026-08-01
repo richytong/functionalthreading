@@ -1,5 +1,29 @@
 import time
-from functionalthreading import partial, _, chain, tap, tmap
+from functionalthreading import Thread, partial, _, chain, tap, tmap
+
+def test_Thread():
+    assert Thread.__doc__, 'Should have docs.'
+
+    def f(n):
+        return n ** 2
+
+    t = Thread(target=f, args=[3])
+    t.start()
+    t.join()
+    assert t.result == 9, f't.result ({t.result}) != 9'
+
+    def f(a, b, c):
+        return a + b + c
+
+    t = Thread(target=f, args=[1, 2, 3])
+    t.start()
+    t.join()
+    assert t.result == 6, f't.result ({t.result}) != 6'
+
+    t = Thread(target=f, kwargs={ 'a': 1, 'b': 2, 'c': 3 })
+    t.start()
+    t.join()
+    assert t.result == 6, f't.result ({t.result}) != 6'
 
 def test_partial_and__():
     assert partial.__doc__, 'Should have docs.'
@@ -85,6 +109,7 @@ def test_tmap():
 
 
 def test():
+    test_Thread()
     test_partial_and__()
     test_chain()
     test_tap()
