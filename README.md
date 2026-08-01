@@ -259,7 +259,7 @@ chain(
 ### tmap(func)
 Map a function concurrently across each element of an array or tuple.
 
-Each function invokation happens in a separate thread.
+Each function invocation happens in a separate thread.
 
 ```python
 squared = tmap([1, 2, 3], lambda n: n ** 2)
@@ -277,7 +277,7 @@ squared = my_mapping_func([1, 2, 3])
 ### tforeach(func)
 Execute a function concurrently for each element of an array or tuple.
 
-Each function invokation happens in a separate thread.
+Each function invocation happens in a separate thread.
 
 ```python
 tforeach([1, 2, 3], print)
@@ -288,6 +288,30 @@ If the array or tuple argument is omitted, returns a function of the function to
 ```python
 my_foreach_func = tforeach(print)
 my_foreach_func([1, 2, 3])
+```
+
+
+### tfilter(argument, func)
+### tfilter(func)
+Concurrently filter an array or tuple.
+
+Each predicate invocation happens in a separate thread.
+
+```python
+def is_odd(n):
+    return n % 2 == 1
+
+odd_numbers = tfilter([1, 2, 3, 4, 5], is_odd)
+```
+
+If the array or tuple argument is omitted, returns a function of the predicate that expects the argument.
+
+```python
+def is_odd(n):
+    return n % 2 == 1
+
+filter_odds = tfilter(is_odd)
+odd_numbers = filter_odds([1, 2, 3, 4, 5])
 ```
 
 

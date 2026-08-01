@@ -1,5 +1,5 @@
 import time
-from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter
 
 def test_Thread():
     assert Thread.__doc__, 'Should have docs.'
@@ -165,6 +165,25 @@ def test_tforeach():
     assert numbers[1] == 2, f'ret[1] ({ret[1]}) != 2'
     assert numbers[2] == 3, f'ret[2] ({ret[2]}) != 3'
 
+def test_tfilter():
+    assert tfilter.__doc__, 'Should have docs.'
+
+    def is_odd(n):
+        return n % 2 == 1
+
+    ret = tfilter([1, 2, 3, 4, 5], is_odd)
+    assert len(ret) == 3, f'len(ret) ({len(ret)}) != 3'
+    assert ret[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert ret[1] == 3, f'ret[1] ({ret[1]}) != 3'
+    assert ret[2] == 5, f'ret[2] ({ret[2]}) != 5'
+
+    filter_odds = tfilter(is_odd)
+    ret = filter_odds([1, 2, 3, 4, 5])
+    assert len(ret) == 3, f'len(ret) ({len(ret)}) != 3'
+    assert ret[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert ret[1] == 3, f'ret[1] ({ret[1]}) != 3'
+    assert ret[2] == 5, f'ret[2] ({ret[2]}) != 5'
+
 def test():
     test_Thread()
     test_partial_and__()
@@ -174,6 +193,7 @@ def test():
     test_tap()
     test_tmap()
     test_tforeach()
+    test_tfilter()
 
 if __name__ == '__main__':
     test()

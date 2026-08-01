@@ -114,7 +114,7 @@ def _tmap(argument, func):
 def tmap(*args):
     """Map a function concurrently across each element of an array or tuple.
 
-    Each function invokation happens in a separate thread.
+    Each function invocation happens in a separate thread.
 
     ```python
     squared = tmap([1, 2, 3], lambda n: n ** 2)
@@ -149,7 +149,7 @@ def _tforeach(argument, func):
 def tforeach(*args):
     """Execute a function concurrently for each element of an array or tuple.
 
-    Each function invokation happens in a separate thread.
+    Each function invocation happens in a separate thread.
 
     ```python
     tforeach([1, 2, 3], print)
@@ -167,6 +167,55 @@ def tforeach(*args):
         return partial(_tforeach, _, args[0])
     return _tforeach(*args)
 
+def _tfilter(argument, func):
+    length = len(argument)
+    threads = []
+    index = 0
+    args = [argument]
+    while index < length:
+        t = Thread(target=func, args=[argument[index]])
+        t.start()
+        threads.append(t)
+        index += 1
+    result = []
+    index = 0
+    while index < length:
+        t = threads[index]
+        t.join()
+        if t.result:
+            result.append(argument[index])
+        index += 1
+    if isinstance(argument, tuple):
+        return tuple(result)
+    return result
+
+def tfilter(*args):
+    """Concurrently filter an array or tuple.
+
+    Each predicate invocation happens in a separate thread.
+
+    ```python
+    def is_odd(n):
+        return n % 2 == 1
+
+    odd_numbers = tfilter([1, 2, 3, 4, 5], is_odd)
+    ```
+
+    If the array or tuple argument is omitted, returns a function of the predicate that expects the argument.
+
+    ```python
+    def is_odd(n):
+        return n % 2 == 1
+
+    filter_odds = tfilter(is_odd)
+    odd_numbers = filter_odds([1, 2, 3, 4, 5])
+    ```
+
+    """
+    if callable(args[0]):
+        return partial(_tfilter, _, args[0])
+    return _tfilter(*args)
+
 __name__ = 'functions'
 
-__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap', 'tforeach']
+__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap', 'tforeach', 'tfilter']
