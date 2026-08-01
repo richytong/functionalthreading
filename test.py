@@ -1,5 +1,5 @@
 import time
-from functionalthreading import Thread, partial, _, chain, tap, tmap
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap
 
 def test_Thread():
     assert Thread.__doc__, 'Should have docs.'
@@ -47,6 +47,39 @@ def test_partial_and__():
     assert ret[0] == 1, f'ret[0] ({ret[0]}) != 1'
     assert ret[1] == 2, f'ret[1] ({ret[1]}) != 2'
     assert ret[2] == 3, f'ret[2] ({ret[2]}) != 3'
+
+def test_always():
+    assert always.__doc__, 'Should have docs.'
+
+    always1 = always(1)
+    ret = always1()
+    assert ret == 1, f'ret ({ret}) != 1'
+    ret = always1()
+    assert ret == 1, f'ret ({ret}) != 1'
+    ret = always1()
+    assert ret == 1, f'ret ({ret}) != 1'
+
+def test_thunkify():
+    assert thunkify.__doc__, 'Should have docs.'
+
+    def add(a, b, c):
+        return a + b + c
+
+    thunkAdd123 = thunkify(add, 1, 2, 3)
+    ret = thunkAdd123()
+    assert ret == 6, f'ret ({ret}) != 6'
+    ret = thunkAdd123()
+    assert ret == 6, f'ret ({ret}) != 6'
+    ret = thunkAdd123()
+    assert ret == 6, f'ret ({ret}) != 6'
+
+    thunkAdd123 = thunkify(add, 1, b=2, c=3)
+    ret = thunkAdd123()
+    assert ret == 6, f'ret ({ret}) != 6'
+    ret = thunkAdd123()
+    assert ret == 6, f'ret ({ret}) != 6'
+    ret = thunkAdd123()
+    assert ret == 6, f'ret ({ret}) != 6'
 
 def test_chain():
     assert chain.__doc__, 'Should have docs.'
@@ -113,6 +146,8 @@ def test_tmap():
 def test():
     test_Thread()
     test_partial_and__()
+    test_always()
+    test_thunkify()
     test_chain()
     test_tap()
     test_tmap()

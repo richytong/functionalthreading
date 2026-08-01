@@ -1,6 +1,37 @@
 from functools import partial, Placeholder as _
 from functionalthreading.classes import Thread
 
+def always(argument):
+    """Always return a value.
+
+    ```python
+    always5 = always(5)
+
+    always5()
+
+    """
+    def inner_func():
+        return argument
+    return inner_func
+
+def thunkify(func, *args, **kwargs):
+    """Create a thunk from a function and arguments.
+
+    A thunk is a function that takes no arguments and executes the provided function with the provided arguments each call.
+
+    ```python
+    printHello = thunkify(print, 'Hello')
+
+    printHello()
+    printHello()
+    printHello()
+    ```
+
+    """
+    def inner_func():
+        return func(*args, **kwargs)
+    return inner_func
+
 def _chain(argument, funcs):
     ret = argument
     for func in funcs:
@@ -102,4 +133,4 @@ def tmap(*args):
 
 __name__ = 'functions'
 
-__all__ = ['chain', 'tap', 'tmap']
+__all__ = ['always', 'thunkify', 'chain', 'tap', 'tmap']

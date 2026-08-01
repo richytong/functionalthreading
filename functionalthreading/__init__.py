@@ -1,5 +1,5 @@
 from functools import partial, Placeholder as _
-from functionalthreading.functions import chain, tap, tmap
+from functionalthreading.functions import always, thunkify, chain, tap, tmap
 from functionalthreading.classes import Thread
 
 __name__ = 'functionalthreading'
