@@ -7,7 +7,7 @@ with open('pyproject.toml', 'rb') as file:
     setup(
         name='functionalthreading',
         version=pyproject['project']['version'],
-        description='Functional programming with thread-based parallelism',
+        description='Concurrent functional programming with thread-based parallelism',
         packages=[
             'functionalthreading',
             'functionalthreading.classes',

@@ -4,7 +4,7 @@ version = "0.6.0"
 authors = [
   { name="Richard Tong", email="richytong@gmail.com" },
 ]
-description = "Functional programming with thread-based parallelism"
+description = "Concurrent functional programming with thread-based parallelism"
 readme = "README.md"
 requires-python = ">=3.14"
 classifiers = [
