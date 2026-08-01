@@ -257,15 +257,15 @@ chain(
 
 ### tmap(argument, func)
 ### tmap(func)
-Map a function concurrently across each element of an array or tuple.
+Map a function concurrently across each element of an list or tuple.
 
-Each function invocation happens in a separate thread.
+A mapper is a function that specifies a single element of an list or tuple and returns a corresponding element of the resulting list or tuple. Each mapper invocation happens in a separate thread.
 
 ```python
 squared = tmap([1, 2, 3], lambda n: n ** 2)
 ```
 
-If the array or tuple argument is omitted, returns a function of the mapping function that expects the argument.
+If the list or tuple argument is omitted, returns a function of the mapper that expects the argument.
 
 ```python
 my_mapping_func = tmap(lambda n: n ** 2)
@@ -275,15 +275,15 @@ squared = my_mapping_func([1, 2, 3])
 
 ### tforeach(argument, func)
 ### tforeach(func)
-Execute a function concurrently for each element of an array or tuple.
+Execute a callback concurrently for each element of an list or tuple.
 
-Each function invocation happens in a separate thread.
+A callback is a function that does not necessarily specify a value or return. Each callback invocation happens in a separate thread.
 
 ```python
 tforeach([1, 2, 3], print)
 ```
 
-If the array or tuple argument is omitted, returns a function of the function to execute that expects the argument.
+If the list or tuple argument is omitted, returns a function of the callback that expects the argument.
 
 ```python
 my_foreach_func = tforeach(print)
@@ -293,9 +293,9 @@ my_foreach_func([1, 2, 3])
 
 ### tfilter(argument, func)
 ### tfilter(func)
-Concurrently filter an array or tuple.
+Concurrently filter an list or tuple.
 
-Each predicate invocation happens in a separate thread.
+A predicate is a function that specifies an element of an list or tuple and returns a boolean value. Elements corresponding to predicate invocations that return `False` are filtered out of the resulting list or tuple, while elements corresponding to predicate invocationsn that return `True` are retained. Each predicate invocation happens in a separate thread.
 
 ```python
 def is_odd(n):
@@ -304,7 +304,7 @@ def is_odd(n):
 odd_numbers = tfilter([1, 2, 3, 4, 5], is_odd)
 ```
 
-If the array or tuple argument is omitted, returns a function of the predicate that expects the argument.
+If the list or tuple argument is omitted, returns a function of the predicate that expects the argument.
 
 ```python
 def is_odd(n):
@@ -312,6 +312,24 @@ def is_odd(n):
 
 filter_odds = tfilter(is_odd)
 odd_numbers = filter_odds([1, 2, 3, 4, 5])
+```
+
+
+### tflatmap(argument, func)
+### tflatmap(func)
+Apply a flatmapper concurrently to each element of an list or tuple, concatenating the results.
+
+A flatmapper is a function that specifies an element of the list or tuple, and returns a list, tuple, or single element. A returned list or tuple is concatenated onto the resulting list or tuple, while a returned single element is appended. Each flatmapper invocation happens in a separate thread.
+
+```python
+duplicates = tflatmap([1, 2, 3], lambda n: [n, n, n])
+```
+
+If the list or tuple argument is omitted, returns a function of the flatmapping function that expects the argument.
+
+```python
+my_flatmapping_func = tflatmap(lambda n: [n, n, n])
+duplicates = my_flatmapping_func([1, 2, 3])
 ```
 
 

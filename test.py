@@ -1,5 +1,5 @@
 import time
-from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter, reduce
+from functionalthreading import Thread, partial, _, always, thunkify, chain, tap, tmap, tforeach, tfilter, reduce, tflatmap
 
 def test_Thread():
     assert Thread.__doc__, 'Should have docs.'
@@ -204,6 +204,34 @@ def test_reduce():
     ret = reducing_func([1, 2, 3, 4, 5])
     assert ret == 25, f'ret ({ret}) != 25'
 
+def test_tflatmap():
+    assert tflatmap.__doc__, 'Should have docs.'
+
+    ret = tflatmap([1, 2, 3], lambda n: [n, n, n])
+    assert len(ret) == 9, f'len(ret) ({ret}) != 9'
+    assert ret[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert ret[1] == 1, f'ret[1] ({ret[1]}) != 1'
+    assert ret[2] == 1, f'ret[2] ({ret[2]}) != 1'
+    assert ret[3] == 2, f'ret[3] ({ret[3]}) != 2'
+    assert ret[4] == 2, f'ret[4] ({ret[4]}) != 2'
+    assert ret[5] == 2, f'ret[5] ({ret[5]}) != 2'
+    assert ret[6] == 3, f'ret[6] ({ret[6]}) != 3'
+    assert ret[7] == 3, f'ret[7] ({ret[7]}) != 3'
+    assert ret[8] == 3, f'ret[8] ({ret[8]}) != 3'
+
+    flatmapping_func = tflatmap(lambda n: [n, n, n])
+    ret = flatmapping_func([1, 2, 3])
+    assert len(ret) == 9, f'len(ret) ({ret}) != 9'
+    assert ret[0] == 1, f'ret[0] ({ret[0]}) != 1'
+    assert ret[1] == 1, f'ret[1] ({ret[1]}) != 1'
+    assert ret[2] == 1, f'ret[2] ({ret[2]}) != 1'
+    assert ret[3] == 2, f'ret[3] ({ret[3]}) != 2'
+    assert ret[4] == 2, f'ret[4] ({ret[4]}) != 2'
+    assert ret[5] == 2, f'ret[5] ({ret[5]}) != 2'
+    assert ret[6] == 3, f'ret[6] ({ret[6]}) != 3'
+    assert ret[7] == 3, f'ret[7] ({ret[7]}) != 3'
+    assert ret[8] == 3, f'ret[8] ({ret[8]}) != 3'
+
 def test():
     test_Thread()
     test_partial_and__()
@@ -215,6 +243,7 @@ def test():
     test_tforeach()
     test_tfilter()
     test_reduce()
+    test_tflatmap()
 
 if __name__ == '__main__':
     test()
