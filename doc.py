@@ -155,13 +155,13 @@ Placeholder cannot be passed to partial() as a keyword argument.
 {always.__doc__}
 ### thunkify{signature(thunkify)}
 {thunkify.__doc__}
-### chain(*funcs)
 ### chain(argument, *funcs)
+### chain(*funcs)
 {chain.__doc__}
 ### tap{signature(tap)}
 {tap.__doc__}
-### tmap(func)
 ### tmap(argument, func)
+### tmap(func)
 {tmap.__doc__}
 """
 

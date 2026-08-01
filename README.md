@@ -209,8 +209,8 @@ printHello()
 ```
 
 
-### chain(*funcs)
 ### chain(argument, *funcs)
+### chain(*funcs)
 Chain functions together.
 
 Each function is evaluated in series starting from the first function, passing the return value as the first and only argument to the next function. The return value of the chain is the return value of the last function.
@@ -255,8 +255,8 @@ chain(
 ```
 
 
-### tmap(func)
 ### tmap(argument, func)
+### tmap(func)
 Map a function concurrently across each element of an array or tuple.
 
 Each function invokation happens in a separate thread.
