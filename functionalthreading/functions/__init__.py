@@ -120,7 +120,7 @@ def tmap(*args):
     squared = tmap([1, 2, 3], lambda n: n ** 2)
     ```
 
-    If the array or tuple argument is omitted, returns a function of the mapping function that expects the non-function argument.
+    If the array or tuple argument is omitted, returns a function of the mapping function that expects the argument.
 
     ```python
     my_mapping_func = tmap(lambda n: n ** 2)
