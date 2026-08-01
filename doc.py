@@ -2,7 +2,7 @@ from inspect import signature
 from functionalthreading import Thread, partial, _, chain, tap, tmap
 
 readme_content = f"""# functionalthreading
-functionalthreading - Functional programming with thread-based parallelism
+functionalthreading - Concurrent functional programming with thread-based parallelism
 
 ```python
 from functionalthreading import chain, tap, tmap

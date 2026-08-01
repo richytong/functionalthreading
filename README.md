@@ -1,5 +1,5 @@
 # functionalthreading
-functionalthreading - Functional programming with thread-based parallelism
+functionalthreading - Concurrent functional programming with thread-based parallelism
 
 ```python
 from functionalthreading import chain, tap, tmap
